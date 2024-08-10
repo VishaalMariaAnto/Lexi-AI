@@ -8,14 +8,12 @@ import axios from 'axios';
 function App() {
   const [Question, setQuestion] = useState("")
   const [Answer, setAnswer] = useState("")
-  //const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
   
   async function generateAnswer(){
     setAnswer("Loading..")
     const response = await axios({
-      //url:'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${import.process.env.VITE_API_GENERATIVE_LANGUAGE_CLIENT}',
-      // url: "axios.get('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apikey}')",
-      url:'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyApv_o5dXWDKbDkyVvwww7nIagQ3P_fGiE',
+      url: axios.get(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`),
       method:"post",
       data:{"contents":
         [{"parts":[{"text":Question}]}
